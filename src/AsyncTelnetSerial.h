@@ -5,19 +5,19 @@
 #include <HardwareSerial.h>
 #include "AsyncTelnet.h"
 
-typedef std::function<void(const char *response, size_t len)> SerialResponseHandler;
+typedef std::function<void (const char *response, size_t len)> SerialResponseHandler;
 
-class AsyncTelnetSerial: public AsyncTelnet {
+class AsyncTelnetSerial : public AsyncTelnet {
 
-  public:
-    AsyncTelnetSerial(HardwareSerial *serial);
-    bool begin(unsigned long baudrate = 115200, bool LinkTelnetToSerial = true, bool enableMDNS = false);
+public:
+AsyncTelnetSerial(HardwareSerial *serial);
+bool begin(unsigned long baudrate = 115200, bool LinkTelnetToSerial = true, bool enableMDNS = false);
 
-    void onSerialResponse(SerialResponseHandler callbackFunc);
+void onSerialResponse(SerialResponseHandler callbackFunc);
 
-    SerialResponseHandler _serial_response_cb = NULL;
-  private:
-    HardwareSerial *_serial;
+SerialResponseHandler _serial_response_cb = NULL;
+private:
+HardwareSerial *_serial;
 
 };
 
